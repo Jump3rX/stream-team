@@ -47,6 +47,3 @@ For any questions or suggestions, reach out to me:
 - 🌐 [Portfolio](https://jump3rx.github.io)
 - 📧 Email: [njoraconrad@gmail.com](mailto:njoraconrad@gmail.com)
 
----
-
-Happy Coding! 🚀
