@@ -4,22 +4,26 @@ import Home from "./components/Home";
 import Listen from "./components/Listen.jsx";
 import About from "./components/About";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer.jsx";
+
 function App() {
   return (
-    <>
-      <Router>
-        <div className="flex">
-          <NavBar />
-          <main className="ml-64 p-6 w-full min-h-screen bg-gray-100">
+    <Router>
+      <div className="flex min-h-screen">
+        <NavBar />
+
+        <div className="flex flex-col flex-1 lg:ml-64 transition-all duration-300">
+          <main className="p-6 flex-grow bg-gray-100">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/listen" element={<Listen />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </main>
+          <Footer />
         </div>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 }
 
