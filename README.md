@@ -7,7 +7,7 @@ This project is a **Radio Streaming Site** built with **React.js**. It allows us
 ## 🎯 Features
 
 - 🎵 **Radio Streaming** – Play various online radio stations.
-- 🔍 **Search Functionality** – Find stations by name, genre, or location.
+- 🔍 **Search Functionality** – Find stations by name.
 - ⭐ **Favorites List** – Save and manage favorite stations.
 - 📱 **Responsive Design** – Works well on both desktop and mobile devices.
 
