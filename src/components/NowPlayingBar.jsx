@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Heart, Volume2, Play, Pause } from "lucide-react";
+import { Heart, Volume2, Play, Pause, VolumeX } from "lucide-react";
 
 function NowPlayingBar({ station, addToFavorites }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
+  const [mute, setMute] = useState(false);
   const audioRef = useRef(null);
 
-  // Auto-play when a new station is selected
+  // Auto plays when a new station is selected
   useEffect(() => {
     if (station?.url && audioRef.current) {
       audioRef.current.src = station.url;
@@ -18,11 +19,12 @@ function NowPlayingBar({ station, addToFavorites }) {
 
   // change between play and pause
   function handlePlayPause() {
-    if (!station?.url) return;
+    if (!station?.url) return; // if not station is provided it breaks out of function withut error
     if (isPlaying) {
+      //if btn is clicked when staion is playing it is paused then isPlaying state s set to false
       audioRef.current.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current.play(); //if btn is clicked when station is paused it is played then isPlaying state s set to true
     }
     setIsPlaying(!isPlaying);
   }
@@ -34,6 +36,15 @@ function NowPlayingBar({ station, addToFavorites }) {
     }
   }, [volume]);
 
+  function muteVolume() {
+    if (mute === false) {
+      setVolume(0);
+      setMute(true);
+    } else {
+      setVolume(1);
+      setMute(false);
+    }
+  }
   return (
     <div className="w-full bg-white p-4 mt-4 shadow-md rounded-lg flex items-center justify-between flex-wrap">
       <div className="flex items-center space-x-4">
@@ -64,7 +75,14 @@ function NowPlayingBar({ station, addToFavorites }) {
           )}
         </button>
 
-        <Volume2 className="w-5 h-5" />
+        <button onClick={muteVolume}>
+          {mute ? (
+            <VolumeX className="w-5 h-5" />
+          ) : (
+            <Volume2 className="w-5 h-5" />
+          )}
+        </button>
+
         <input
           type="range"
           className="w-24 sm:w-32"
