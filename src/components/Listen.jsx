@@ -39,8 +39,10 @@ function Listen() {
   /*===============================================================================*/
   function getAllFavorites() {
     // gets all favorite stations and loads then to loadFavorites state
-    const stations = localStorage.getItem("my-favorites");
-    let favStations = JSON.parse(stations);
+    let favStations = JSON.parse(localStorage.getItem("my-favorites"));
+    if (!Array.isArray(favStations)) {
+      favStations = [];
+    }
     setLoadFavorites(favStations);
   }
 
@@ -88,10 +90,12 @@ function Listen() {
 
   function getFavorites() {
     //  gets all favorite stations from localstorage
+    let allFavorites = JSON.parse(localStorage.getItem("my-favorites"));
+    if (!Array.isArray(allFavorites)) {
+      allFavorites = [];
+    }
     setIsFavorites(true); //set current active tab to favorites tab
-    let allFavorites = localStorage.getItem("my-favorites");
-    let listStations = JSON.parse(allFavorites);
-    setStations(listStations);
+    setStations(allFavorites);
   }
   return (
     <div className="p-6 bg-gray-300 min-h-screen flex flex-col items-center">
